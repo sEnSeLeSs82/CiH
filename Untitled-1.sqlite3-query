@@ -1,0 +1,3 @@
+-- database: ./CashAufTäsch.db
+
+SELECT * FROM umsatz;
