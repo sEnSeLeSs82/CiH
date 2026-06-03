@@ -1,3 +1,5 @@
+# own_functions
+
 def einnahme():
     print("Was möchen Sie als Einnahme verbuchen?")
     print("Bite gib e für einen Euro Betrag oder h für Stunden ein")

@@ -94,12 +94,31 @@ while stay=="n":
         cursor.execute("SELECT * FROM umsatz")
         rows = cursor.fetchall()
 
-    # In CSV-Datei schreiben
+    # In CSV-Datei schreiben und ausgeben
         with open("ausgabe.csv", "w", newline="", encoding="utf-8") as file:
+            
+            # Daten in csv Datei ausgeben
+            
             writer = csv.writer(file)
             # Optional: Header schreiben
             # writer.writerow([desc[0] for desc in cursor.description])
             writer.writerows(rows)
+            
+            
+            # Daten im Terminal anzeigen
+            
+            
+            zeiger = connection.cursor()
+
+            # Abfrage ausführen
+            zeiger.execute("SELECT * FROM umsatz")
+
+            # Zeilenweise Ausgabe
+            for zeile in zeiger:
+                print(zeile)
+            
+            
+            
             
             connection.close()
         print ("beenden? y oder n eingeben")
