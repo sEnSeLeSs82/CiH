@@ -29,7 +29,7 @@ stay="n"
 
 
 while stay=="n":
-    print(" Bitte gib a für ausgabe oder e für Einname ein")
+    print(" Bitte gib a für ausgabe, e für Einname oder u für die Ausgabe der Umsätze ein")
     auswahl = input("")
     print(auswahl)
     
@@ -84,35 +84,41 @@ while stay=="n":
         print ("beenden? y oder n eingeben")
         stay=(input(""))
         
+    elif auswahl=="u":
+        
+        # Verbindung zur Datenbank herstellen
+    #connection = sqlite3.connect("CashAufTäsch.db")
+        cursor = connection.cursor()
+
+    # Daten aus der Tabelle auswählen
+        cursor.execute("SELECT * FROM umsatz")
+        rows = cursor.fetchall()
+
+    # In CSV-Datei schreiben
+        with open("ausgabe.csv", "w", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
+            # Optional: Header schreiben
+            # writer.writerow([desc[0] for desc in cursor.description])
+            writer.writerows(rows)
+            
+            connection.close()
+        print ("beenden? y oder n eingeben")
+        stay=(input(""))
+        
     else:
         print ("Auswahl nicht erkannt")
         print ("beenden? y oder n eingeben")
         stay=(input(""))
 
-
+"""
 print("möchtensie die umsätze jetzt ausgeben - j oder n")
 frage_druck = input("")
 
 if frage_druck=="j":
 
-    # Verbindung zur Datenbank herstellen
-    connection = sqlite3.connect("CashAufTäsch.db")
-    cursor = connection.cursor()
-
-    # Daten aus der Tabelle auswählen
-    cursor.execute("SELECT * FROM umsatz")
-    rows = cursor.fetchall()
-
-    # In CSV-Datei schreiben
-    with open("ausgabe.csv", "w", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-        # Optional: Header schreiben
-        # writer.writerow([desc[0] for desc in cursor.description])
-        writer.writerows(rows)
-        
-        connection.close()
+    
         
 else:
     print("ok dann nicht")
-
+"""
 
